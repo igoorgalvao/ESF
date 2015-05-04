@@ -1,0 +1,118 @@
+@CHARSET "UTF-8";
+
+.ui-widget {
+	font-size: 12px !important;
+}
+
+label,input,button,select,textarea {
+	font-size: 12px !important;
+}
+
+.itemMenuVertical {
+	padding-left: 15px;
+	font-size: 16px !important;
+}
+
+/* Ícone de Obrigatoriedade*/
+.icoObrigatorio {
+	background: url("../resources/design/imagem/asterisco.png") no-repeat; scroll 0 0 transparent;
+	display: block;
+	margin: 5px 0 0;
+	padding: 0 0 0 7px;
+	position: relative;
+}
+
+.ui-growl {
+	background: none repeat scroll 0pt 0pt #DDEBF4;
+	border: none;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 10%;
+	top: 115px !important;
+}
+
+.btn-toolbar>form#searchform {
+	float: right;
+	margin-bottom: 25px;
+	margin-top: -32px;
+}
+
+.ui-inputfield {
+	margin-bottom: 0 !important;
+}
+
+.ui-button {
+	background: linear-gradient(to bottom, hsl(0, 0%, 100%), hsl(0, 0%, 82%) ) repeat scroll 0 0 transparent;
+	cursor: pointer;
+	display: inline-block;
+	margin-right: 0.1em;
+	overflow: visible;
+	padding: 0;
+	position: relative;
+	text-align: center;
+	text-decoration: none !important;
+}
+
+button.ui-state-hover {
+	color: #ECA5A8 !important;
+}
+
+ui-toolbar-group-left button.ui-state-hover {
+	color: #FFFFFF !important;
+}
+
+.ui-wizard-step-title {
+	color: #DE9AA7;
+	float: left;
+	font-size: 13px !important;
+	margin: 0 3px 0 0;
+	padding: 11px;
+}
+
+.ui-wizard-step-title.ui-state-default.ui-corner-all.ui-state-highlight {
+	background: none repeat scroll 0 0 #DE9AA7;
+	color: #FFFFFF;
+}
+
+.ui-toolbar .ui-state-hover {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border: 1px solid #DE9AA7;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.ui-accordion .ui-accordion-header {
+	background: linear-gradient(to bottom, #F2F2F2, #E5E5E5) repeat scroll 0 0 transparent;
+	border: 1px solid #DDDDDD;
+	cursor: pointer;
+	position: relative;
+}
+
+.ui-accordion.ui-widget.ui-helper-reset.ui-hidden-container {
+	border: 1px solid #DDDDDD;
+}
+
+.embreve {
+	background: none repeat scroll 0 0 #BFBFBF;
+	color: #FFFFFF;
+	text-shadow: none;
+}
+
+.embreve:after {
+	background: none repeat scroll 0 0 #FFFFFF;
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 0 3px inset;
+	color: #F2B8BB;
+	content: " Embreve";
+	float: right;
+	font-size: 13px;
+	padding: 4px;
+	position: relative;
+	right: 78px;
+	text-indent: 0;
+	top: -4px;
+}
+
+.ui-datalist-item {
+	padding-bottom: 10px;
+}
