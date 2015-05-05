@@ -49,6 +49,8 @@ public abstract class BaseBean<T extends Entidade> implements Serializable {
 	public abstract void verificarAcesso();
 
 	public abstract T createModel();
+	
+	public abstract void init();
 
 	public abstract String getQualifiedName();
 

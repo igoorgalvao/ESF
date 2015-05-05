@@ -5,6 +5,10 @@
 
 	<ui:define name="body">
 
+		<f:metadata>
+			<f:event type="preRenderView" listener="#{login.init}" />
+		</f:metadata>
+
 		<p:growl id="msgs" autoUpdate="false" showDetail="true" globalOnly="false" life="#{const.growlTime}" />
 
 		<h:form id="formLogin" prependId="false">
@@ -19,21 +23,23 @@
 					</tr>
 					<tr>
 						<td align="right" bgcolor="#96C0C5"><h:graphicImage library="design/imagem-default" name="icone_usuario.png" /></td>
-						<td bgcolor="#96C0C5"><p:inputText id="login" maxlength="20" size="20" /></td>
+						<td bgcolor="#96C0C5"><p:inputText id="login" value="#{login.model.email}" maxlength="100" size="40" /> <p:watermark
+								value="Email de Acesso" for="login" /></td>
 					</tr>
 					<tr>
 						<td colspan="2" bgcolor="#96C0C5">&nbsp;</td>
 					</tr>
 					<tr>
 						<td align="right" bgcolor="#96C0C5"><h:graphicImage library="design/imagem-default" name="icone_senha.png" /></td>
-						<td bgcolor="#96C0C5"><p:password feedback="false" id="senha" maxlength="20" size="20" /></td>
+						<td bgcolor="#96C0C5"><p:password feedback="false" id="senha" value="#{login.model.senha}" maxlength="40" size="40" /> <p:watermark
+								value="Senha" for="senha" /></td>
 					</tr>
 					<tr>
 
-						<td colspan="2" align="center" bgcolor="#96C0C5"><p:commandButton value="Acessar" ajax="false" update="msgs" /> <br /> <p:commandLink
-								id="trocar" styleClass="semLink" update="msgs2" oncomplete="dialogSenha.show()" value="Trocar Senha" /> <h:outputText value=" | "
-								styleClass="semLink" /> <p:commandLink styleClass="semLink" update="msgsemail" oncomplete="emailDialog.show()"
-								value="Esqueci minha senha" /></td>
+						<td colspan="2" align="center" bgcolor="#96C0C5"><p:commandButton value="Acessar" id="acessar" action="#{login.logar}"
+								ajax="true" process="@form" update="@form" /> <br /> <p:commandLink id="trocar" styleClass="semLink" update="msgs2"
+								oncomplete="dialogSenha.show()" value="Trocar Senha" /> <h:outputText value=" / " styleClass="semLink" /> <p:commandLink
+								styleClass="semLink" update="msgsemail" oncomplete="emailDialog.show()" value="Esqueci minha senha" /></td>
 					</tr>
 				</table>
 			</div>

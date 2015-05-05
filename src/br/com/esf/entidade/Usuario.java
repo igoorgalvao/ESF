@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import br.com.arquitetura.entidade.Entidade;
 
 @Entity
-@Table(name = "USUARIO", catalog = "ESF")
+@Table(name = "USUARIO")
 public class Usuario extends Entidade<Long> {
 
 	private static final long serialVersionUID = -4934269009612475727L;
@@ -19,6 +19,18 @@ public class Usuario extends Entidade<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_USUARIO", unique = true, nullable = false)
 	private Long id;
+
+	@Column(name = "NOME")
+	private String nome;
+
+	@Column(name = "SENHA")
+	private String senha;
+
+	@Column(name = "EMAIL")
+	private String email;
+
+	@Column(name = "FLG_ATIVO")
+	private Boolean flgAtivo;
 
 	public Long getId() {
 		return id;
@@ -63,17 +75,5 @@ public class Usuario extends Entidade<Long> {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	@Column(name = "NOME")
-	private String nome;
-
-	@Column(name = "SENHA")
-	private String senha;
-
-	@Column(name = "EMAIL")
-	private String email;
-
-	@Column(name = "FLG_ATIVO")
-	private Boolean flgAtivo;
 
 }

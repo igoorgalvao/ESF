@@ -22,14 +22,14 @@ label,input,button,select,textarea {
 	position: relative;
 }
 
-.ui-growl {
+/*.ui-growl {
 	background: none repeat scroll 0pt 0pt #DDEBF4;
 	border: none;
 	margin-left: 30%;
 	margin-right: 30%;
 	margin-top: 10%;
 	top: 115px !important;
-}
+}*/
 
 .btn-toolbar>form#searchform {
 	float: right;
