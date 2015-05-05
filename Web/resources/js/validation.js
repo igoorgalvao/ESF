@@ -1,18 +1,1 @@
-function validateFields(fields) {
-	for ( var i = 0; i < fields.length; i++) {
-		var field = fields[i];
-		var id = field.id;
-		var msg = field.msg;
-
-		if ($("#" + id).val() == "") {
-			$("#conteudoMsg").text(msg);
-			$("#idMsg").val(id);
-			popupMsg.show();
-			return false;
-		}
-	}
-	return true;
-}
-function focusMsg(){
-	$("#"+$("#idMsg").val()).focus();
-}
+function validateFields(s){for(var o=0;o<s.length;o++){var t=s[o],i=t.id,n=t.msg;if(""==$("#"+i).val())return $("#conteudoMsg").text(n),$("#idMsg").val(i),popupMsg.show(),!1}return!0}function focusMsg(){$("#"+$("#idMsg").val()).focus()}

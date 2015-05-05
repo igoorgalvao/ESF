@@ -12,9 +12,8 @@
 		<meta http-equiv="Expires" content="0" />
 		<f:loadBundle basename="constantes" var="const" />
 
-		<h:outputScript library="design/js" name="calendar_traducao.js" />
-		<h:outputStylesheet library="design/css" name="default.css" />
-		<h:outputStylesheet library="design/css" name="css.css" />
+		<h:outputStylesheet library="design/css" name="default.css" target="head" />
+		<h:outputStylesheet library="design/css" name="css.css" target="head" />
 
 		<title><h:outputText value="#{const.versao}" /></title>
 	</h:head>

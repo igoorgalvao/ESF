@@ -16,11 +16,6 @@
 		<h:outputStylesheet library="design/css" name="default.css" />
 		<h:outputStylesheet library="design/css" name="css.css" />
 
-		<h:outputScript library="design/js" name="calendar_traducao.js" />
-		<h:outputScript library="design/js" name="jquery.numeric.js" />
-		<h:outputScript library="design/js" name="validation.js" target="head" />
-		<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
-
 		<title><h:outputText value="#{const.versao}" /></title>
 		<ui:insert name="head"></ui:insert>
 
@@ -54,6 +49,11 @@
 				</div>
 			</p:layoutUnit>
 			<p:layoutUnit position="south" size="45">
+				<h:outputScript library="design/js" name="calendar_traducao.js" target="head" />
+				<h:outputScript library="design/js" name="jquery.numeric.js" target="head" />
+				<h:outputScript library="design/js" name="validation.js" target="head" />
+				<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
+				
 				<!-- RODAPÉ - INÍCIO -->
 				<!-- RODAPÉ - FIM -->
 			</p:layoutUnit>
