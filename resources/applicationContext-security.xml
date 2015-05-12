@@ -6,7 +6,7 @@
 	<sec:http auto-config="true" access-denied-page="/pages/error/acesso-invalido.jsf">
 		<sec:intercept-url pattern="/pages/error/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />
 		<sec:intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
-		<sec:intercept-url pattern="/pages/**" access="ROLE_USER" />
+		<sec:intercept-url pattern="/pages/**" access="ROLE_ACESSO" />
 
 		<!-- Set the login page and what to do if login fails -->
 		<sec:form-login login-page="/login.jsf" default-target-url="/pages/principal.jsf" always-use-default-target="true"
@@ -14,24 +14,21 @@
 		<sec:logout invalidate-session="true" logout-success-url="/login.jsf" />
 	</sec:http>
 
-	<!-- <sec:authentication-manager alias="loginManager"> -->
-	<!-- <sec:authentication-provider> -->
-	<!-- <sec:password-encoder hash="md5" /> -->
-	<!-- <sec:jdbc-user-service data-source-ref="dataSource" -->
-	<!-- users-by-username-query="select EMAIL as USERNAME, SENHA as PASSWORD, -->
-	<!-- FLG_ATIVO as ENABLED from PORTALNB.USUARIO where EMAIL=?" -->
-	<!-- authorities-by-username-query="select distinct u.EMAIL as USERNAME, -->
-	<!-- f.NOM_ROLE from PORTALNB.PERFIL p, PORTALNB.USUARIO u, PORTALNB.PERFIL_FUNCIONALIDADE pf, PORTALNB.FUNCIONALIDADE f where u.ID_PERFIL -->
-	<!-- = p.ID_PERFIL and pf.ID_PERFIL = p.ID_PERFIL and pf.ID_FUNCIONALIDADE = f.ID_FUNCIONALIDADE and u.EMAIL=?" /> -->
-	<!-- </sec:authentication-provider> -->
-	<!-- </sec:authentication-manager> -->
-
 	<sec:authentication-manager alias="loginManager">
 		<sec:authentication-provider>
-			<sec:user-service>
-				<sec:user name="admin" password="admin" authorities="ROLE_USER" />
-			</sec:user-service>
+			<sec:password-encoder hash="md5" />
+			<sec:jdbc-user-service data-source-ref="dataSource"
+				users-by-username-query="select LOGIN as USERNAME, SENHA as PASSWORD,true as ENABLED from USUARIOS where LOGIN = ?"
+				authorities-by-username-query="select LOGIN as USERNAME, 'ROLE_ACESSO' as NOM_ROLE  from USUARIOS where LOGIN = ?" />
 		</sec:authentication-provider>
 	</sec:authentication-manager>
+
+	<!-- <sec:authentication-manager alias="loginManager"> -->
+	<!-- <sec:authentication-provider> -->
+	<!-- <sec:user-service> -->
+	<!-- <sec:user name="admin" password="admin" authorities="ROLE_USER" /> -->
+	<!-- </sec:user-service> -->
+	<!-- </sec:authentication-provider> -->
+	<!-- </sec:authentication-manager> -->
 
 </beans>

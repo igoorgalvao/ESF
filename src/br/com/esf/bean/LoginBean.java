@@ -31,11 +31,15 @@ public class LoginBean extends BaseBean<Usuario> {
 
 	@ManagedProperty(value = "#{loginManager}")
 	private AuthenticationManager am;
+	
+	@ManagedProperty(value = "#{banco}")
+	private BancoBean banco;
 
 	@Override
 	public void init() {
 		logout();
 		setModel(new Usuario());
+		banco.popularBase();
 	}
 	
 	public String logout() {
@@ -54,8 +58,8 @@ public class LoginBean extends BaseBean<Usuario> {
 	@SuppressWarnings("unchecked")
 	public String logar() {
 		try {
-			if (getModel().getEmail() == null || getModel().getEmail().equals("")) {
-				FacesMessagesUtil.addErrorMessage("Email ", Constantes.CAMPO_OBRIGATORIO);
+			if (getModel().getLogin() == null || getModel().getLogin().equals("")) {
+				FacesMessagesUtil.addErrorMessage("Login ", Constantes.CAMPO_OBRIGATORIO);
 				return "";
 			}
 			if (getModel().getSenha() == null || getModel().getSenha().equals("")) {
@@ -63,7 +67,7 @@ public class LoginBean extends BaseBean<Usuario> {
 				return "";
 			}
 
-			Authentication request = new UsernamePasswordAuthenticationToken(getModel().getEmail().trim(), getModel().getSenha().trim());
+			Authentication request = new UsernamePasswordAuthenticationToken(getModel().getLogin().trim(), getModel().getSenha().trim());
 			Authentication result = am.authenticate(request);
 			SecurityContextHolder.getContext().setAuthentication(result);
 
@@ -145,6 +149,14 @@ public class LoginBean extends BaseBean<Usuario> {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public BancoBean getBanco() {
+		return banco;
+	}
+
+	public void setBanco(BancoBean banco) {
+		this.banco = banco;
 	}
 
 }

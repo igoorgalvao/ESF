@@ -116,3 +116,10 @@ ui-toolbar-group-left button.ui-state-hover {
 .ui-datalist-item {
 	padding-bottom: 10px;
 }
+
+/*GERAL*/
+.geral {
+	background-color: #E6E6E6;
+		min-height: 100%;
+}
+
