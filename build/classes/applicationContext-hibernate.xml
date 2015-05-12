@@ -18,8 +18,8 @@
 				<prop key="hibernate.show_sql">false</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.archive.autodetection">class</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-<!-- 				<prop key="hibernate.hbm2ddl.auto">validate</prop> -->
+<!-- 				<prop key="hibernate.hbm2ddl.auto">create</prop> -->
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
 
 				<!-- Cache segundo nivel -->
 				<!-- <prop key="hibernate.cache.use_second_level_cache">true</prop> -->
