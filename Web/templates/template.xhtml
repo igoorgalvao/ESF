@@ -24,11 +24,13 @@
 			<p:layoutUnit position="north" size="180">
 				<div class="geral">
 					<h:panelGrid width="100%" columns="3" columnClasses="coluna30,coluna65,coluna5">
-					<h:outputLink value="http://www.google.com" target="_blank">
-							<h:graphicImage library="design/imagem" name="logo_escola.png" />
-					</h:outputLink>
-						<h:graphicImage library="design/imagem" name="escola_sem_fila.png" />
-						<h:graphicImage library="design/imagem" name="change.png" />
+						<h:outputLink value="http://www.google.com" target="_blank">
+							<div class="logo_escola" />
+						</h:outputLink>
+						<div class="escola_sem_fila" />
+						<h:outputLink value="http://www.google.com" target="_blank">
+							<div class="change" />
+						</h:outputLink>
 					</h:panelGrid>
 				</div>
 			</p:layoutUnit>
@@ -50,8 +52,10 @@
 					<!-- CONTEÚDO - INÍCIO -->
 					<div class="conteudo">
 						<div>
-							<p:growl id="msgs" autoUpdate="true" showDetail="true" globalOnly="true" life="#{const.growlTime}" />
-							<ui:insert name="body" />
+							<h:form id="formPrincipal" prependId="false">
+								<p:growl id="msgs" autoUpdate="true" showDetail="true" globalOnly="true" life="#{const.growlTime}" />
+								<ui:insert name="body" />
+							</h:form>
 						</div>
 					</div>
 					<!-- CONTEÚDO - FIM -->

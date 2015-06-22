@@ -6,24 +6,24 @@
 
 	<ui:define name="body">
 		<div align="center">
-			<br /> <br />
+			<br /> <br /> <br /> <br />
 			<h:panelGrid columns="3" width="100%">
-				<p:commandLink action="initResponsavel.xhtml" ajax="false">
+				<p:commandLink>
 					<h:panelGrid columns="1">
-						<div class="responsaveis" />
-						<h:outputText style="padding-left: 105px;" value="Responsáveis" />
-					</h:panelGrid>
-				</p:commandLink>
-				<p:commandLink action="initEscola.xhtml" ajax="false">
-					<h:panelGrid columns="1">
-						<div class="escola" />
-						<h:outputText style="padding-left: 125px;" value="Escola" />
+						<h:graphicImage library="design/imagem" name="novo_responsavel.png" />
+						<h:outputText style="padding-left: 140px;" value="Novo Responsável" />
 					</h:panelGrid>
 				</p:commandLink>
 				<p:commandLink>
 					<h:panelGrid columns="1">
-						<div class="saida_de_alunos" />
-						<h:outputText style="padding-left: 105px;" value="Saída de alunos" />
+						<h:graphicImage library="design/imagem" name="troca_responsavel.png" />
+						<h:outputText style="padding-left: 140px;" value="Trocar Responsável" />
+					</h:panelGrid>
+				</p:commandLink>
+				<p:commandLink>
+					<h:panelGrid columns="1">
+						<h:graphicImage library="design/imagem" name="aviso.png" />
+						<h:outputText style="padding-left: 140px;" value="Aviso para a escola" />
 					</h:panelGrid>
 				</p:commandLink>
 			</h:panelGrid>

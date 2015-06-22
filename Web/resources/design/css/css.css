@@ -412,3 +412,87 @@
 	width: 100%;
 	line-height: 23px;
 }
+
+
+.saida_de_alunos, .escola, .responsaveis{
+	background: url(../resources/design/imagem/principalSprint.png) no-repeat;
+}
+
+.saida_de_alunos{
+	background-position: -626px -6px ;
+	width: 297px;
+	height: 296px;
+}
+
+.escola{
+	background-position: -320px -2px ;
+	width: 297px;
+	height: 296px;
+}
+
+.responsaveis{
+	background-position: -2px 0;
+	width: 296px;
+	height: 296px;
+}
+
+.troca_responsavel, .aviso, .novo_responsavel{
+	background: url(../resources/design/imagem/sprites2.png) no-repeat;
+}
+
+.troca_responsavel{
+	background-position: -619px 0;
+	width: 305px;
+	height: 296px;
+}
+
+.aviso{
+	background-position: -313px 0;
+	width: 297px;
+	height: 296px;
+}
+
+.novo_responsavel{
+	background-position: 0 0;
+	width: 297px;
+	height: 296px;
+}
+
+.aviso, .cadastramento{
+	background: url(../resources/design/imagem/sprites3.png) no-repeat;
+}
+
+.aviso{
+	background-position: -307px 0;
+	width: 297px;
+	height: 296px;
+}
+
+.cadastramento{
+	background-position: 0 0;
+	width: 296px;
+	height: 296px;
+}
+
+.logo_escola, .change, .escola_sem_fila{
+	background: url(../resources/design/imagem/sprites4.png) no-repeat;
+}
+
+.logo_escola{
+	background-position: -230px -171px ;
+	width: 174px;
+	height: 144px;
+}
+
+.change{
+	background-position: -36px -170px ;
+	width: 113px;
+	height: 165px;
+}
+
+.escola_sem_fila{
+	background-position: 0 0;
+	width: 733px;
+	height: 151px;
+}
+
