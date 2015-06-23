@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/templates/template-login.xhtml">
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
 
 	<ui:define name="body">
 
@@ -9,38 +9,31 @@
 			<f:event type="preRenderView" listener="#{login.init}" />
 		</f:metadata>
 
-		<p:growl id="msgs" autoUpdate="false" showDetail="true" globalOnly="false" life="#{const.growlTime}" />
-
 		<h:form id="formLogin" prependId="false">
 
+			<br />
+			<br />
+			<br />
+			<br />
 			<div align="center">
-				<table width="20%" border="0" cellspacing="0" cellpadding="0" style="border: none; padding-top: 120px;">
+				<table class="tableLogin">
 					<tr>
-						<td colspan="2" align="center" bgcolor="#96C0C5"><strong>Área Restrita</strong></td>
+						<td><h:outputText value="Usuário:" styleClass="textoLogin" /></td>
+						<td><p:inputText id="login" value="#{login.model.login}" maxlength="100" size="40"
+								style="background-color:#4D94D3;color:white;border-radius: 10px;" /> <p:watermark value="Login de Acesso" for="login" /></td>
 					</tr>
 					<tr>
-						<td colspan="2" bgcolor="#96C0C5">&nbsp;</td>
-					</tr>
-					<tr>
-						<td align="right" bgcolor="#96C0C5">
-						<h:graphicImage library="design/imagem-default" name="icone_usuario.png" /></td>
-						<td bgcolor="#96C0C5"><p:inputText id="login" value="#{login.model.login}" maxlength="100" size="40" /> <p:watermark
-								value="Login de Acesso" for="login" /></td>
-					</tr>
-					<tr>
-						<td colspan="2" bgcolor="#96C0C5">&nbsp;</td>
-					</tr>
-					<tr>
-						<td align="right" bgcolor="#96C0C5"><h:graphicImage library="design/imagem-default" name="icone_senha.png" /></td>
-						<td bgcolor="#96C0C5"><p:password feedback="false" id="senha" value="#{login.model.senha}" maxlength="40" size="40" /> <p:watermark
-								value="Senha" for="senha" /></td>
+						<td><h:outputText value="Senha:" styleClass="textoLogin" /></td>
+						<td><p:password feedback="false" id="senha" value="#{login.model.senha}"
+								style="background-color:#4D94D3;color:white;border-radius: 10px;" maxlength="40" size="40" /> <p:watermark value="Senha"
+								for="senha" /></td>
 					</tr>
 					<tr>
 
-						<td colspan="2" align="center" bgcolor="#96C0C5"><p:commandButton value="Acessar" id="acessar" action="#{login.logar}"
-								ajax="true" process="@form" update="@form" /> <br /> <p:commandLink id="trocar" styleClass="semLink" update="msgs2"
-								oncomplete="dialogSenha.show()" value="Trocar Senha" /> <h:outputText value=" / " styleClass="semLink" /> <p:commandLink
-								styleClass="semLink" update="msgsemail" oncomplete="emailDialog.show()" value="Esqueci minha senha" /></td>
+						<td colspan="2" align="center"><p:commandButton value="Acessar"  id="acessar" action="#{login.logar}" ajax="true" process="@form"
+								update="@form" /> <br /> <p:commandLink id="trocar" styleClass="semLink" update="msgs2" oncomplete="dialogSenha.show()"
+								value="Trocar Senha" /> <h:outputText value=" / " styleClass="semLink" /> <p:commandLink styleClass="semLink" update="msgsemail"
+								oncomplete="emailDialog.show()" value="Esqueci minha senha" /></td>
 					</tr>
 				</table>
 			</div>

@@ -31,7 +31,6 @@
 	font-size: 12px;
 }
 
-
 .textsemColor {
 	color: black;
 	font-size: 12px;
@@ -44,6 +43,7 @@
 .colunaTop {
 	vertical-align: top;
 }
+
 .coluna80Top {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -79,6 +79,7 @@
 	width: 2%;
 	line-height: 23px;
 }
+
 .coluna1 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -99,12 +100,14 @@
 	width: 5%;
 	line-height: 23px;
 }
+
 .coluna6 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 6%;
 	line-height: 23px;
 }
+
 .coluna7 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -139,6 +142,7 @@
 	width: 20%;
 	line-height: 23px;
 }
+
 .coluna22 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -152,24 +156,28 @@
 	width: 23%;
 	line-height: 23px;
 }
+
 .coluna24 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 24%;
 	line-height: 23px;
 }
+
 .coluna25 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 25%;
 	line-height: 23px;
 }
+
 .coluna26 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 26%;
 	line-height: 23px;
 }
+
 .coluna27 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -183,6 +191,7 @@
 	width: 28%;
 	line-height: 23px;
 }
+
 .coluna29 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -196,6 +205,7 @@
 	width: 30%;
 	line-height: 23px;
 }
+
 .coluna32 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -220,6 +230,7 @@
 	width: 34%;
 	line-height: 23px;
 }
+
 .coluna35 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -247,12 +258,14 @@
 	width: 42%;
 	line-height: 23px;
 }
+
 .coluna44 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 44%;
 	line-height: 23px;
 }
+
 .coluna45 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -266,6 +279,7 @@
 	width: 48%;
 	line-height: 23px;
 }
+
 .coluna49 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -279,6 +293,7 @@
 	width: 50%;
 	line-height: 23px;
 }
+
 .coluna53 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -300,12 +315,14 @@
 	width: 54%;
 	line-height: 23px;
 }
+
 .coluna55 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 55%;
 	line-height: 23px;
 }
+
 .coluna56 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -326,18 +343,21 @@
 	width: 65%;
 	line-height: 23px;
 }
+
 .coluna67 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 67%;
 	line-height: 23px;
 }
+
 .coluna68 {
 	border: 0 none !important;
 	font-size: 12px !important;
 	width: 68%;
 	line-height: 23px;
 }
+
 .coluna69 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -365,6 +385,7 @@
 	width: 73%;
 	line-height: 23px;
 }
+
 .coluna75 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -378,6 +399,7 @@
 	width: 79%;
 	line-height: 23px;
 }
+
 .coluna80 {
 	border: 0 none !important;
 	font-size: 12px !important;
@@ -413,86 +435,118 @@
 	line-height: 23px;
 }
 
-
-.saida_de_alunos, .escola, .responsaveis{
+.saida_de_alunos, .escola, .responsaveis {
 	background: url(../resources/design/imagem/principalSprint.png) no-repeat;
 }
 
-.saida_de_alunos{
-	background-position: -626px -6px ;
+.saida_de_alunos {
+	background-position: -626px -6px;
 	width: 297px;
 	height: 296px;
 }
 
-.escola{
-	background-position: -320px -2px ;
+.escola {
+	background-position: -320px -2px;
 	width: 297px;
 	height: 296px;
 }
 
-.responsaveis{
+.responsaveis {
 	background-position: -2px 0;
 	width: 296px;
 	height: 296px;
 }
 
-.troca_responsavel, .aviso, .novo_responsavel{
+.troca_responsavel, .aviso, .novo_responsavel {
 	background: url(../resources/design/imagem/sprites2.png) no-repeat;
 }
 
-.troca_responsavel{
+.troca_responsavel {
 	background-position: -619px 0;
 	width: 305px;
 	height: 296px;
 }
 
-.aviso{
+.aviso {
 	background-position: -313px 0;
 	width: 297px;
 	height: 296px;
 }
 
-.novo_responsavel{
+.novo_responsavel {
 	background-position: 0 0;
 	width: 297px;
 	height: 296px;
 }
 
-.aviso, .cadastramento{
+.aviso, .cadastramento {
 	background: url(../resources/design/imagem/sprites3.png) no-repeat;
 }
 
-.aviso{
+.aviso {
 	background-position: -307px 0;
 	width: 297px;
 	height: 296px;
 }
 
-.cadastramento{
+.cadastramento {
 	background-position: 0 0;
 	width: 296px;
 	height: 296px;
 }
 
-.logo_escola, .change, .escola_sem_fila{
+.logo_escola, .change, .escola_sem_fila {
 	background: url(../resources/design/imagem/sprites4.png) no-repeat;
 }
 
-.logo_escola{
-	background-position: -230px -171px ;
+.logo_escola {
+	background-position: -230px -171px;
 	width: 174px;
 	height: 144px;
 }
 
-.change{
-	background-position: -36px -170px ;
+.change {
+	background-position: -36px -170px;
 	width: 113px;
 	height: 165px;
 }
 
-.escola_sem_fila{
+.escola_sem_fila {
 	background-position: 0 0;
 	width: 733px;
 	height: 151px;
 }
 
+.tituloPagina {
+	font-size: 36px;
+	color: #2E75B6;
+	font-weight: bold;
+}
+
+.textoPagina {
+	font-size: 18px;
+	color: #2E75BD;
+}
+
+.textoLogin {
+	font-size: 18px;
+	color: white;
+}
+
+.textoInit {
+	font-size: 20px;
+	color: #4d94d3;
+	font-weight: bold;
+}
+
+.campoPagina {
+	color: white;
+	background-color: #4d94d3;
+}
+
+.tableLogin {
+	background-color: #A8C2E1;
+	width: 30%;
+	border: 0;
+	padding-top: 30px;
+}

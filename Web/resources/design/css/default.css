@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .ui-widget {
-	font-size: 12px !important;
+	font-size: 18px !important;
 }
 
 label,input,button,select,textarea {
@@ -20,6 +20,11 @@ label,input,button,select,textarea {
 	margin: 5px 0 0;
 	padding: 0 0 0 7px;
 	position: relative;
+}
+.ui-button-text-only .ui-button-text{
+	color: white !important;
+	background-color:#EE7320 !important;
+	border-color: #EE7320 !important;
 }
 
 /*.ui-growl {
@@ -119,7 +124,7 @@ ui-toolbar-group-left button.ui-state-hover {
 
 /*GERAL*/
 .geral {
-	background-color: #E6E6E6;
-		min-height: 100%;
+	background-color: #DFDFDF;
+	min-height: 100%;
 }
 
