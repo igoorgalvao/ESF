@@ -6,9 +6,11 @@ import java.util.List;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.persistence.Column;
 
 import br.com.arquitetura.excecao.ExcecaoUtil;
 import br.com.arquitetura.service.UniversalManager;
+import br.com.esf.entidade.Responsavel;
 import br.com.esf.entidade.Usuario;
 import br.com.esf.util.CriptoUtil;
 
@@ -26,7 +28,6 @@ public class BancoBean implements Serializable {
 	public void popularBase() {
 
 		try {
-
 			if (jaPopulado == null || !jaPopulado) {
 
 				Usuario user1 = new Usuario();
@@ -38,6 +39,21 @@ public class BancoBean implements Serializable {
 					user1.setNome("admin");
 					user1.setSenha(CriptoUtil.getCriptografia("admin"));
 					universalManager.save(user1);
+				}
+
+				Responsavel resp = new Responsavel();
+				resp.setLogin("igor");
+				List<Responsavel> listaResp = universalManager.listBy(resp);
+
+				if (listaResp == null || listaResp.isEmpty()) {
+					resp.setNome("igor");
+					resp.setParentesco("Pai");
+					resp.setTipo("1");
+					resp.setEmail("igor.galvao1@gmail.com");
+					resp.setCadastraOutros(false);
+					resp.setLogin("igor");
+					resp.setSenha(CriptoUtil.getCriptografia("admin"));
+					universalManager.save(resp);
 				}
 			}
 

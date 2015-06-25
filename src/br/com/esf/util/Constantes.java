@@ -5,6 +5,8 @@ import br.com.arquitetura.util.ConstantesARQ;
 public class Constantes extends ConstantesARQ {
 
 	public static final String USUARIO_SESSAO = getString("usuario_sessao");
+	public static final String TIPO_USUARIO ="TIPO_USUARIO";
+	public static final String TIPO_RESPONSAVEL ="TIPO_RESPONSAVEL";
 
 	public static String SENHA_ATUAL_NAO_CONFERE = getString("senha_atual_nao_confere");
 	public static String AMBAS_SENHAS_IDENTICAS = getString("ambas_senhas_identicas");

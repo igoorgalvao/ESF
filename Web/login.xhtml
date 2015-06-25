@@ -19,18 +19,17 @@
 				<table class="tableLogin">
 					<tr>
 						<td><h:outputText value="Usuário:" styleClass="textoLogin" /></td>
-						<td><p:inputText id="login" value="#{login.model.login}" maxlength="100" size="40"
-								style="background-color:#4D94D3;color:white;border-radius: 10px;" /> <p:watermark value="Login de Acesso" for="login" /></td>
+						<td><p:inputText id="login" value="#{login.model.login}" maxlength="100" size="40" style="#{style.styleCampo}" /> <p:watermark
+								value="Login de Acesso" for="login" /></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Senha:" styleClass="textoLogin" /></td>
-						<td><p:password feedback="false" id="senha" value="#{login.model.senha}"
-								style="background-color:#4D94D3;color:white;border-radius: 10px;" maxlength="40" size="40" /> <p:watermark value="Senha"
-								for="senha" /></td>
+						<td><p:password feedback="false" id="senha" value="#{login.model.senha}" style="#{style.styleCampo}" maxlength="40"
+								size="40" /> <p:watermark value="Senha" for="senha" /></td>
 					</tr>
 					<tr>
 
-						<td colspan="2" align="center"><p:commandButton value="Acessar"  id="acessar" action="#{login.logar}" ajax="true" process="@form"
+						<td colspan="2" align="center"><p:commandButton value="Acessar" id="acessar" action="#{login.logar}" ajax="true" process="@form"
 								update="@form" /> <br /> <p:commandLink id="trocar" styleClass="semLink" update="msgs2" oncomplete="dialogSenha.show()"
 								value="Trocar Senha" /> <h:outputText value=" / " styleClass="semLink" /> <p:commandLink styleClass="semLink" update="msgsemail"
 								oncomplete="emailDialog.show()" value="Esqueci minha senha" /></td>

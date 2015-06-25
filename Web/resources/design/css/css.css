@@ -550,3 +550,8 @@
 	border: 0;
 	padding-top: 30px;
 }
+
+.ui-selectonemenu-label.ui-inputfield.ui-corner-all{
+	background:#4D94D3;
+	color: white;
+}

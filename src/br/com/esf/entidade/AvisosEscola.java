@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,8 +17,8 @@ import javax.persistence.TemporalType;
 import br.com.arquitetura.entidade.Entidade;
 
 @Entity
-@Table(name = "avisos", catalog = "mydb")
-public class Avisos extends Entidade<Long> {
+@Table(name = "avisos_esco", catalog = "mydb")
+public class AvisosEscola extends Entidade<Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,6 +26,10 @@ public class Avisos extends Entidade<Long> {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_AVISOS", unique = true)
 	private Long id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FK_ID_USUARIOS")
+	private Usuario usuario;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "DATA")
@@ -35,18 +42,15 @@ public class Avisos extends Entidade<Long> {
 	@Column(name = "TEXTO",columnDefinition="TEXT")
 	private String texto;
 
-	@Column(name = "EMISSOR")
-	private String emissor;
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "HORARIO_SAIDA")
 	private Date horarioSaida;
 
-	public Avisos(Long id) {
+	public AvisosEscola(Long id) {
 		this.id = id;
 	}
 
-	public Avisos() {
+	public AvisosEscola() {
 	}
 
 	public Long getId() {
@@ -81,13 +85,6 @@ public class Avisos extends Entidade<Long> {
 		this.texto = texto;
 	}
 
-	public String getEmissor() {
-		return emissor;
-	}
-
-	public void setEmissor(String emissor) {
-		this.emissor = emissor;
-	}
 
 	public Date getHorarioSaida() {
 		return horarioSaida;
@@ -99,6 +96,14 @@ public class Avisos extends Entidade<Long> {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

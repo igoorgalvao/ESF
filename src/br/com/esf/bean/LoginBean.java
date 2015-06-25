@@ -13,6 +13,8 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthoritiesContainerImpl;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import br.com.arquitetura.bean.BaseBean;
@@ -31,17 +33,33 @@ public class LoginBean extends BaseBean<Usuario> {
 
 	@ManagedProperty(value = "#{loginManager}")
 	private AuthenticationManager am;
-	
+
 	@ManagedProperty(value = "#{banco}")
 	private BancoBean banco;
 
 	@Override
 	public void init() {
-		logout();
-		setModel(new Usuario());
-		banco.popularBase();
+
+		try {
+			if (getSessionMap().get(Constantes.USUARIO_SESSAO) != null) {
+				
+				if((Boolean) getSessionMap().get(Constantes.TIPO_USUARIO)){
+					FacesContext.getCurrentInstance().getExternalContext().redirect("pages/principal.jsf");
+				}else if((Boolean) getSessionMap().get(Constantes.TIPO_RESPONSAVEL)){
+					FacesContext.getCurrentInstance().getExternalContext().redirect("pages/principalResponsavel.jsf");
+				}
+			} else {
+				logout();
+				setModel(new Usuario());
+			}
+
+			banco.popularBase();
+		} catch (Exception e) {
+			ExcecaoUtil.tratarExcecao(e);
+
+		}
 	}
-	
+
 	public String logout() {
 		try {
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
@@ -54,7 +72,7 @@ public class LoginBean extends BaseBean<Usuario> {
 		}
 		return SUCCESS;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public String logar() {
 		try {
@@ -74,8 +92,26 @@ public class LoginBean extends BaseBean<Usuario> {
 			// Coloca o usuário na sessão
 			this.setModel(getUsuarioLogando());
 			getSessionMap().put(Constantes.USUARIO_SESSAO, getModel());
-
-			return redirect("/pages/principal.jsf");
+			
+			
+			//Verifica se usuario ou responsavel
+			List<GrantedAuthority> lista =  (List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();  
+			for(GrantedAuthority grand:lista){
+				if(grand.getAuthority().equalsIgnoreCase("ROLE_USER")){
+					getSessionMap().put(Constantes.TIPO_USUARIO, true);
+					getSessionMap().put(Constantes.TIPO_RESPONSAVEL, false);
+				}else if(grand.getAuthority().equalsIgnoreCase("ROLE_RESP")){
+					getSessionMap().put(Constantes.TIPO_RESPONSAVEL, true);
+					getSessionMap().put(Constantes.TIPO_USUARIO, false);
+				}
+			}
+			
+			if((Boolean) getSessionMap().get(Constantes.TIPO_USUARIO)){
+				return redirect("/pages/principal.jsf");
+			}else if((Boolean) getSessionMap().get(Constantes.TIPO_RESPONSAVEL)){
+				return redirect("/pages/principalResponsavel.jsf");
+			}
+			
 		} catch (DisabledException e) {
 			FacesMessagesUtil.addErrorMessage("Login ", " Usuário desabilitado");
 			return "";
