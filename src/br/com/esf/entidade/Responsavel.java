@@ -47,12 +47,6 @@ public class Responsavel extends Entidade<Long> {
 	@Column(name = "CADASTRA_OUTROS")
 	private Boolean cadastraOutros;
 
-	@Column(name = "LOGIN")
-	private String login;
-
-	@Column(name = "SENHA")
-	private String senha;
-
 	public Responsavel() {
 	}
 
@@ -120,22 +114,6 @@ public class Responsavel extends Entidade<Long> {
 		this.cadastraOutros = cadastraOutros;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -144,11 +122,9 @@ public class Responsavel extends Entidade<Long> {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + Arrays.hashCode(foto);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		result = prime * result + ((parentesco == null) ? 0 : parentesco.hashCode());
 		result = prime * result + ((responsavel == null) ? 0 : responsavel.hashCode());
-		result = prime * result + ((senha == null) ? 0 : senha.hashCode());
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
@@ -179,11 +155,6 @@ public class Responsavel extends Entidade<Long> {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (login == null) {
-			if (other.login != null)
-				return false;
-		} else if (!login.equals(other.login))
-			return false;
 		if (nome == null) {
 			if (other.nome != null)
 				return false;
@@ -199,11 +170,6 @@ public class Responsavel extends Entidade<Long> {
 				return false;
 		} else if (!responsavel.equals(other.responsavel))
 			return false;
-		if (senha == null) {
-			if (other.senha != null)
-				return false;
-		} else if (!senha.equals(other.senha))
-			return false;
 		if (tipo == null) {
 			if (other.tipo != null)
 				return false;
@@ -211,5 +177,8 @@ public class Responsavel extends Entidade<Long> {
 			return false;
 		return true;
 	}
+
+
+
 
 }

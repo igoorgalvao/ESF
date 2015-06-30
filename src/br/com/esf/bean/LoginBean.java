@@ -13,21 +13,19 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthoritiesContainerImpl;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import br.com.arquitetura.bean.BaseBean;
 import br.com.arquitetura.excecao.ExcecaoUtil;
 import br.com.arquitetura.util.FacesMessagesUtil;
 import br.com.arquitetura.util.FacesUtil;
-import br.com.esf.entidade.Usuario;
+import br.com.esf.entidade.Acesso;
 import br.com.esf.util.Constantes;
 import br.com.esf.util.CriptoUtil;
 
 @ManagedBean(name = "login")
 @SessionScoped
-public class LoginBean extends BaseBean<Usuario> {
+public class LoginBean extends BaseBean<Acesso> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,15 +40,15 @@ public class LoginBean extends BaseBean<Usuario> {
 
 		try {
 			if (getSessionMap().get(Constantes.USUARIO_SESSAO) != null) {
-				
-				if((Boolean) getSessionMap().get(Constantes.TIPO_USUARIO)){
+
+				if ((Boolean) getSessionMap().get(Constantes.TIPO_USUARIO)) {
 					FacesContext.getCurrentInstance().getExternalContext().redirect("pages/principal.jsf");
-				}else if((Boolean) getSessionMap().get(Constantes.TIPO_RESPONSAVEL)){
+				} else if ((Boolean) getSessionMap().get(Constantes.TIPO_RESPONSAVEL)) {
 					FacesContext.getCurrentInstance().getExternalContext().redirect("pages/principalResponsavel.jsf");
 				}
 			} else {
 				logout();
-				setModel(new Usuario());
+				setModel(new Acesso());
 			}
 
 			banco.popularBase();
@@ -92,31 +90,27 @@ public class LoginBean extends BaseBean<Usuario> {
 			// Coloca o usuário na sessão
 			this.setModel(getUsuarioLogando());
 			getSessionMap().put(Constantes.USUARIO_SESSAO, getModel());
-			
-			
-			//Verifica se usuario ou responsavel
-			List<GrantedAuthority> lista =  (List<GrantedAuthority>) SecurityContextHolder.getContext().getAuthentication().getAuthorities();  
-			for(GrantedAuthority grand:lista){
-				if(grand.getAuthority().equalsIgnoreCase("ROLE_USER")){
-					getSessionMap().put(Constantes.TIPO_USUARIO, true);
-					getSessionMap().put(Constantes.TIPO_RESPONSAVEL, false);
-				}else if(grand.getAuthority().equalsIgnoreCase("ROLE_RESP")){
-					getSessionMap().put(Constantes.TIPO_RESPONSAVEL, true);
-					getSessionMap().put(Constantes.TIPO_USUARIO, false);
-				}
+
+			// Verifica se usuario ou responsavel
+			if(getModel().getResponsavel() != null && getModel().getResponsavel().getId() != null){
+				getSessionMap().put(Constantes.TIPO_RESPONSAVEL, true);
+				getSessionMap().put(Constantes.TIPO_USUARIO, false);
+			}else{
+				getSessionMap().put(Constantes.TIPO_USUARIO, true);
+				getSessionMap().put(Constantes.TIPO_RESPONSAVEL, false);
 			}
-			
-			if((Boolean) getSessionMap().get(Constantes.TIPO_USUARIO)){
+
+			if ((Boolean) getSessionMap().get(Constantes.TIPO_USUARIO)) {
 				return redirect("/pages/principal.jsf");
-			}else if((Boolean) getSessionMap().get(Constantes.TIPO_RESPONSAVEL)){
+			} else if ((Boolean) getSessionMap().get(Constantes.TIPO_RESPONSAVEL)) {
 				return redirect("/pages/principalResponsavel.jsf");
 			}
-			
+
 		} catch (DisabledException e) {
 			FacesMessagesUtil.addErrorMessage("Login ", " Usuário desabilitado");
 			return "";
 		} catch (AuthenticationException e) {
-			Usuario u = getUsuarioLogando();
+			Acesso u = getUsuarioLogando();
 			if (u == null) {
 				FacesMessagesUtil.addErrorMessage("Login ", " Usuário ou senha inválidos");
 				return "";
@@ -137,12 +131,12 @@ public class LoginBean extends BaseBean<Usuario> {
 
 	}
 
-	public Usuario getUsuarioLogando() {
+	public Acesso getUsuarioLogando() {
 		try {
-			Usuario us = new Usuario();
-			us.setEmail(getModel().getEmail());
+			Acesso us = new Acesso();
+			us.setLogin(getModel().getLogin());
 
-			List<Usuario> listaAcesso = universalManager.listBy(us, false);
+			List<Acesso> listaAcesso = universalManager.listBy(us, false);
 			if (listaAcesso == null || listaAcesso.isEmpty()) {
 				return null;
 			} else {
@@ -161,8 +155,8 @@ public class LoginBean extends BaseBean<Usuario> {
 	}
 
 	@Override
-	public Usuario createModel() {
-		return new Usuario();
+	public Acesso createModel() {
+		return new Acesso();
 	}
 
 	@Override

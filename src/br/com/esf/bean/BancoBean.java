@@ -10,6 +10,7 @@ import javax.persistence.Column;
 
 import br.com.arquitetura.excecao.ExcecaoUtil;
 import br.com.arquitetura.service.UniversalManager;
+import br.com.esf.entidade.Acesso;
 import br.com.esf.entidade.Responsavel;
 import br.com.esf.entidade.Usuario;
 import br.com.esf.util.CriptoUtil;
@@ -30,30 +31,43 @@ public class BancoBean implements Serializable {
 		try {
 			if (jaPopulado == null || !jaPopulado) {
 
-				Usuario user1 = new Usuario();
-				user1.setLogin("admin");
-				List<Usuario> listaAcesso = universalManager.listBy(user1);
+				Acesso acesso = new Acesso();
+				acesso.setLogin("admin");
+				
+				List<Acesso> listaAcesso = universalManager.listBy(acesso);
 
 				if (listaAcesso == null || listaAcesso.isEmpty()) {
-					user1.setEmail("admin@admin.com.br");
-					user1.setNome("admin");
-					user1.setSenha(CriptoUtil.getCriptografia("admin"));
-					universalManager.save(user1);
+					
+					acesso.setSenha(CriptoUtil.getCriptografia("admin"));
+					
+					Usuario user = new Usuario();
+					user.setEmail("admin@admin.com.br");
+					user.setNome("admin");
+					universalManager.save(user);
+
+					acesso.setUsuario(user);
+					universalManager.save(acesso);
+				
 				}
 
-				Responsavel resp = new Responsavel();
-				resp.setLogin("igor");
-				List<Responsavel> listaResp = universalManager.listBy(resp);
+				acesso = new Acesso();
+				acesso.setLogin("igor");
+				listaAcesso = universalManager.listBy(acesso);
 
-				if (listaResp == null || listaResp.isEmpty()) {
+				if (listaAcesso == null || listaAcesso.isEmpty()) {
+					
+					acesso.setSenha(CriptoUtil.getCriptografia("igor"));
+
+					Responsavel resp = new Responsavel();
 					resp.setNome("igor");
 					resp.setParentesco("Pai");
 					resp.setTipo("1");
 					resp.setEmail("igor.galvao1@gmail.com");
 					resp.setCadastraOutros(false);
-					resp.setLogin("igor");
-					resp.setSenha(CriptoUtil.getCriptografia("admin"));
 					universalManager.save(resp);
+
+					acesso.setResponsavel(resp);
+					universalManager.save(acesso);
 				}
 			}
 
