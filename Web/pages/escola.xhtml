@@ -33,7 +33,7 @@
 				<tr>
 					<td><h:outputText value="Email:" styleClass="textoPagina" /></td>
 					<td><p:inputText size="20" style="#{style.styleCampo}" value="#{escolaBean.model.email}" /></td>
-					<td><h:outputText value="Filial:" styleClass="textoPagina" /></td>
+					<td><h:outputText value="Filial?:" styleClass="textoPagina" /></td>
 					<td><p:selectOneRadio style="#{style.styleCampo}" value="#{escolaBean.model.tipo}">
 							<f:selectItem itemLabel="Sim" itemValue="F" />
 							<f:selectItem itemLabel="Não" itemValue="P" />
@@ -46,6 +46,7 @@
 		<br />
 		<div align="center">
 			<p:commandButton value="Salvar" process="@form" update="@form" action="#{escolaBean.save()}" />
+			<p:commandButton value="Limpar" process="@form" update="@form" action="#{escolaBean.limpar()}" />
 			<p:commandButton value="Voltar" action="cadastramento.xhtml?faces-redirect=true" ajax="false" />
 		</div>
 		<br />

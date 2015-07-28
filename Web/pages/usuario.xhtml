@@ -11,15 +11,15 @@
 			<table>
 				<tr>
 					<td><h:outputText value="Nome:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="50" style="#{style.styleCampo}" value="#{usuarioBean.model.usuario.nome}" /></td>
+					<td><p:inputText size="50" maxlength="45" style="#{style.styleCampo}" value="#{usuarioBean.model.usuario.nome}" /></td>
 					<td><h:outputText value="E-mail:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="50" maxlength="4" style="#{style.styleCampo}" value="#{usuarioBean.model.usuario.email}" /></td>
+					<td><p:inputText size="50" maxlength="45" style="#{style.styleCampo}" value="#{usuarioBean.model.usuario.email}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Login:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="50" style="#{style.styleCampo}" value="#{usuarioBean.model.login}" /></td>
+					<td><p:inputText size="50" maxlength="255" style="#{style.styleCampo}" value="#{usuarioBean.model.login}" /></td>
 					<td><h:outputText value="Senha:" styleClass="textoPagina" /></td>
-					<td><p:password size="50" style="#{style.styleCampo}" value="#{usuarioBean.model.senha}" feedback="true" promptLabel="Senha"
+					<td><p:password redisplay="true" inline="true" size="50" maxlength="255" style="#{style.styleCampo}" value="#{usuarioBean.model.senha}" feedback="true" promptLabel="Senha"
 							weakLabel="Senha Fraca" goodLabel="Senha Boa" strongLabel="Senha Forte" /></td>
 				</tr>
 				<tr>
@@ -35,6 +35,7 @@
 		<br />
 		<div align="center">
 			<p:commandButton value="Salvar" process="@form" update="@form" action="#{usuarioBean.save()}" />
+			<p:commandButton value="Limpar" process="@form" update="@form" action="#{usuarioBean.limpar()}" />
 			<p:commandButton value="Voltar" action="cadastramento.xhtml?faces-redirect=true" ajax="false" />
 		</div>
 		<br />

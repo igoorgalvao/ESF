@@ -81,17 +81,19 @@ public class EscolaBean extends PaginableBean<Escola> {
 
 			getModel().setCep(ValidacaoUtil.somenteNumero(getModel().getCep()));
 			getModel().setEstado(new Estado(idEstado));
-			idEstado = null;
-			// TODO retirar
-			getModel().setEstadoSigla(getModel().getEstado().getId().intValue());
 
 			super.save();
-			setModel(new Escola());
+			limpar();
 		} catch (Exception e) {
 			ExcecaoUtil.tratarExcecao(e);
 		}
 
 		return "";
+	}
+
+	public void limpar() {
+		setModel(new Escola());
+		idEstado = null;
 	}
 
 	private boolean camposInvalido() throws Exception {
@@ -130,6 +132,10 @@ public class EscolaBean extends PaginableBean<Escola> {
 		}
 		if (getModel().getEmail() == null || getModel().getEmail().isEmpty()) {
 			FacesMessagesUtil.addErrorMessage("Email", Constantes.CAMPO_OBRIGATORIO);
+			return true;
+		}
+		if(ValidacaoUtil.isEmailValid(getModel().getEmail())){
+			FacesMessagesUtil.addErrorMessage("E-mail", "Inválido");
 			return true;
 		}
 		if (getModel().getTipo() == null || getModel().getTipo().isEmpty()) {

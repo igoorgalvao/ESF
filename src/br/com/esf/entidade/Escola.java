@@ -43,9 +43,6 @@ public class Escola extends Entidade<Long> {
 	@Column(name = "CIDADE")
 	private String cidade;
 
-	@Column(name = "ESTADO")
-	private Integer estadoSigla;
-
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "FK_ID_ESTADO")
 	private Estado estado;
@@ -64,11 +61,16 @@ public class Escola extends Entidade<Long> {
 
 	@Column(name = "EMAIL")
 	private String email;
-	
+
 	@Transient
 	private String tipoFormat;
 
 	public Escola() {
+		estado = new Estado();
+	}
+
+	public Escola(Long id) {
+		this.id = id;
 		estado = new Estado();
 	}
 
@@ -277,19 +279,11 @@ public class Escola extends Entidade<Long> {
 		return estado;
 	}
 
-	public Integer getEstadoSigla() {
-		return estadoSigla;
-	}
-
-	public void setEstadoSigla(Integer estadoSigla) {
-		this.estadoSigla = estadoSigla;
-	}
-
 	public String getTipoFormat() {
-		if(tipo!= null){
-			if(tipo.equals("F")){
+		if (tipo != null) {
+			if (tipo.equals("F")) {
 				return "Filial";
-			}else{
+			} else {
 				return "Principal";
 			}
 		}
