@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import br.com.arquitetura.entidade.Entidade;
 
@@ -43,7 +44,11 @@ public class Escola extends Entidade<Long> {
 	private String cidade;
 
 	@Column(name = "ESTADO")
-	private String estado;
+	private Integer estadoSigla;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "FK_ID_ESTADO")
+	private Estado estado;
 
 	@Column(name = "CEP")
 	private String cep;
@@ -59,8 +64,12 @@ public class Escola extends Entidade<Long> {
 
 	@Column(name = "EMAIL")
 	private String email;
+	
+	@Transient
+	private String tipoFormat;
 
 	public Escola() {
+		estado = new Estado();
 	}
 
 	public Long getId() {
@@ -109,14 +118,6 @@ public class Escola extends Entidade<Long> {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public String getCep() {
@@ -266,6 +267,37 @@ public class Escola extends Entidade<Long> {
 		} else if (!tipo.equals(other.tipo))
 			return false;
 		return true;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public Integer getEstadoSigla() {
+		return estadoSigla;
+	}
+
+	public void setEstadoSigla(Integer estadoSigla) {
+		this.estadoSigla = estadoSigla;
+	}
+
+	public String getTipoFormat() {
+		if(tipo!= null){
+			if(tipo.equals("F")){
+				return "Filial";
+			}else{
+				return "Principal";
+			}
+		}
+		return tipoFormat;
+	}
+
+	public void setTipoFormat(String tipoFormat) {
+		this.tipoFormat = tipoFormat;
 	}
 
 }

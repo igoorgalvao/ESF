@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+
+	<ui:define name="body">
+		<h:outputText value="Usuário:" styleClass="tituloPagina" />
+		<br />
+		<div align="center">
+			<table>
+				<tr>
+					<td><h:outputText value="Nome:" styleClass="textoPagina" /></td>
+					<td><p:inputText size="50" style="#{style.styleCampo}" value="#{usuarioBean.model.usuario.nome}" /></td>
+					<td><h:outputText value="E-mail:" styleClass="textoPagina" /></td>
+					<td><p:inputText size="50" maxlength="4" style="#{style.styleCampo}" value="#{usuarioBean.model.usuario.email}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Login:" styleClass="textoPagina" /></td>
+					<td><p:inputText size="50" style="#{style.styleCampo}" value="#{usuarioBean.model.login}" /></td>
+					<td><h:outputText value="Senha:" styleClass="textoPagina" /></td>
+					<td><p:password size="50" style="#{style.styleCampo}" value="#{usuarioBean.model.senha}" feedback="true" promptLabel="Senha"
+							weakLabel="Senha Fraca" goodLabel="Senha Boa" strongLabel="Senha Forte" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Escola:" styleClass="textoPagina" /></td>
+					<td colspan="3"><p:selectOneMenu style="width:940px;" filterMatchMode="contains" filter="true" value="#{usuarioBean.idEscola}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{usuarioBean.escolas}" var="list" itemLabel="#{list.nome}" itemValue="#{list.id}" />
+						</p:selectOneMenu></td>
+				</tr>
+			</table>
+
+		</div>
+		<br />
+		<div align="center">
+			<p:commandButton value="Salvar" process="@form" update="@form" action="#{usuarioBean.save()}" />
+			<p:commandButton value="Voltar" action="cadastramento.xhtml?faces-redirect=true" ajax="false" />
+		</div>
+		<br />
+		<p:dataTable paginatorPosition="bottom" var="lista" emptyMessage="#{usuarioBean.emptyMessage}" update="lista"
+			rowsPerPageTemplate="#{usuarioBean.paginacao}" styleClass="coluna100" value="#{usuarioBean.lazyDataModel}" paginator="true" lazy="true"
+			rows="5" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'linhaImpar' : 'linhaPar'}" rowIndexVar="rowIx">
+
+			<p:column headerText="Nome" sortBy="#{lista.usuario.nome}" filterBy="#{lista.usuario.nome}" filterStyle="width:200px">
+				<h:outputText value="#{lista.usuario.nome}" />
+			</p:column>
+			<p:column headerText="Login" sortBy="#{lista.login}" filterBy="#{lista.login}" filterStyle="width:200px">
+				<h:outputText value="#{lista.login}" />
+			</p:column>
+			<p:column headerText="Escola" filterBy="#{lista.usuario.escola.nome}" sortBy="#{lista.usuario.escola.nome}" filterStyle="width:200px">
+				<h:outputText value="#{lista.usuario.escola.nome}" />
+			</p:column>
+			<p:column headerText="Ações" style="width:15%;text-align:center;">
+				<p:commandButton title="Editar" value="Editar" update="@form" process="@this" action="#{usuarioBean.load()}">
+					<f:setPropertyActionListener target="#{usuarioBean.model}" value="#{lista}" />
+				</p:commandButton>
+				<p:commandButton title="Excluir" value="Excluir" update="@form" process="@this" action="#{usuarioBean.delete()}">
+					<f:setPropertyActionListener target="#{usuarioBean.model}" value="#{lista}" />
+					<p:confirm header="Confirmação" message="Confirma a exclusão da escola" icon="ui-icon-alert" />
+
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>

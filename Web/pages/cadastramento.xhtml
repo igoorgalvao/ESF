@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+
+	<ui:define name="body">
+		<div align="center">
+			<br /> <br />
+			<h:panelGrid columns="6" width="100%">
+				<p:commandLink action="escola.xhtml?faces-redirect=true" ajax="false">
+					<h:panelGrid columns="1">
+						<div class="cadastramento" />
+						<h:outputText style="padding-left: 100px;" styleClass="textoInit" value="Escola" />
+					</h:panelGrid>
+				</p:commandLink>
+				<p:commandLink>
+					<h:panelGrid columns="1">
+						<div class="aviso" />
+						<h:outputText style="padding-left: 50px;" styleClass="textoInit" value="Professor" />
+					</h:panelGrid>
+				</p:commandLink>
+				<p:commandLink>
+					<h:panelGrid columns="1">
+						<div class="saida_de_alunos" />
+						<h:outputText style="padding-left: 80px;" styleClass="textoInit" value="Turma" />
+					</h:panelGrid>
+				</p:commandLink>
+				<p:commandLink action="usuario.xhtml?faces-redirect=true" ajax="false">
+					<h:panelGrid columns="1">
+						<div class="cadastramento" />
+						<h:outputText style="padding-left: 100px;" styleClass="textoInit" value="Usuários" />
+					</h:panelGrid>
+				</p:commandLink>
+				<p:commandLink>
+					<h:panelGrid columns="1">
+						<div class="aviso" />
+						<h:outputText style="padding-left: 50px;" styleClass="textoInit" value="Alunos" />
+					</h:panelGrid>
+				</p:commandLink>
+				<p:commandLink>
+					<h:panelGrid columns="1">
+						<div class="saida_de_alunos" />
+						<h:outputText style="padding-left: 80px;" styleClass="textoInit" value="Atividade" />
+					</h:panelGrid>
+				</p:commandLink>
+			</h:panelGrid>
+		</div>
+	</ui:define>
+</ui:composition>

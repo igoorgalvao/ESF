@@ -37,6 +37,10 @@ public class Acesso extends Entidade<Long> {
 	@JoinColumn(name = "FK_RESPONSAVEL")
 	private Responsavel responsavel;
 
+	public Acesso() {
+		
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -46,6 +46,7 @@ public abstract class BaseBean<T extends Entidade> implements Serializable {
 		return pagina + ConstantesARQ.FACES_REDIRECT;
 	}
 
+	
 	public abstract void verificarAcesso();
 
 	public abstract T createModel();
@@ -82,26 +83,6 @@ public abstract class BaseBean<T extends Entidade> implements Serializable {
 			return ERROR;
 		}
 		return SUCCESS;
-	}
-
-	public void carregarGoogle(String description, String title) {
-		this.description = "Agenda Das Noivas,Calculadora de Bebidas, Meu Casamento, Cerimonial, Foto/vídeo, Filmagem, Fotografia, Prévia, Igreja, Daminha, guia de fornecedores, empresas noiva, serviços noivas, blog noiva, noivos, Brasilia, Brasil.";
-		this.title = "Noiva em Brasília, Casamento, Noivado, Guia de Fornecedor, blog, decoração";
-
-		if (description != null && !description.isEmpty()) {
-			if (description.length() > 250) {
-				description = description.substring(0, 250);
-			}
-			this.description = description;
-		}
-
-		if (title != null && !title.isEmpty()) {
-			if (title.length() > 90) {
-				title = title.substring(0, 90);
-			}
-			this.title = title;
-		}
-
 	}
 
 	public String save() {

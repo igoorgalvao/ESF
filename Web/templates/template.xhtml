@@ -22,7 +22,7 @@
 
 		<p:layout fullPage="true">
 			<p:layoutUnit position="north" size="190">
-				<div class="geral" >
+				<div class="geral">
 					<h:panelGrid width="100%" columns="3" columnClasses="coluna30,coluna65,coluna5">
 						<h:outputLink value="http://www.google.com" target="_blank">
 							<div class="logo_escola" />
@@ -37,10 +37,12 @@
 			<p:layoutUnit position="center">
 				<!-- GERAL - INÍCIO -->
 				<div class="geral">
-					<p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();" />
-					<p:dialog appendToBody="true" modal="true" widgetVar="statusDialog" draggable="false" closable="false" resizable="false">
-						<h:graphicImage library="design/imagem" name="ajaxloading.gif" />
+					<p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();" />
+					<p:dialog modal="true" widgetVar="statusDialog" header="Processando..." showHeader="false" style="text-align: center;"
+						draggable="false" closable="false" resizable="false">
+						<p:graphicImage value="/resources/design/imagem/ajaxloading.gif" />
 					</p:dialog>
+
 
 					<!-- CABEÇALHO  -->
 					<!-- CABEÇALHO - FIM -->
@@ -55,6 +57,10 @@
 							<h:form id="formPrincipal" prependId="false">
 								<p:growl id="msgs" autoUpdate="true" showDetail="true" globalOnly="true" life="#{const.growlTime}" />
 								<ui:insert name="body" />
+								<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+									<p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+									<p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+								</p:confirmDialog>
 							</h:form>
 						</div>
 					</div>

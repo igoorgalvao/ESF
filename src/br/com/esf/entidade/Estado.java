@@ -15,7 +15,6 @@ public class Estado extends Entidade<Long> {
 
 	private static final long serialVersionUID = 1L;
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_ESTADO", unique = true)
@@ -26,6 +25,14 @@ public class Estado extends Entidade<Long> {
 
 	@Column(name = "NOME")
 	private String nome;
+
+	public Estado() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Estado(Long id) {
+		this.id = id;
+	}
 
 	public Long getId() {
 		return id;

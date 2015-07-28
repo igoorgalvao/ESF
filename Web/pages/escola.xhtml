@@ -7,38 +7,36 @@
 	<ui:define name="body">
 		<h:outputText value="Escola:" styleClass="tituloPagina" />
 		<br />
-		<br />
-
 		<div align="center">
 			<table>
 				<tr>
 					<td><h:outputText value="Nome:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="20" style="#{style.styleCampo}" /></td>
+					<td><p:inputText size="20" style="#{style.styleCampo}" value="#{escolaBean.model.nome}" /></td>
 					<td><h:outputText value="Número:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="10" style="#{style.styleCampo}" /></td>
+					<td><p:inputText size="10" maxlength="4" style="#{style.styleCampo}" value="#{escolaBean.model.numero}" /></td>
 					<td><h:outputText value="Cidade:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="15" style="#{style.styleCampo}" /></td>
+					<td><p:inputText size="15" style="#{style.styleCampo}" value="#{escolaBean.model.cidade}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Logradouro:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="20" style="#{style.styleCampo}" /></td>
+					<td><p:inputText size="20" style="#{style.styleCampo}" value="#{escolaBean.model.logradouro}" /></td>
 					<td><h:outputText value="Bairro:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="10" style="#{style.styleCampo}" /></td>
+					<td><p:inputText size="10" style="#{style.styleCampo}" value="#{escolaBean.model.bairro}" /></td>
 					<td><h:outputText value="Estado:" styleClass="textoPagina" /></td>
-					<td><p:selectOneMenu style="width:100px;">
+					<td><p:selectOneMenu style="width:100px;" value="#{escolaBean.idEstado}">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
-						<f:selectItems value="#{escolaBean.estados}" var="list" itemLabel="#{list.sigla}" itemValue="#{lista.id}" />
+							<f:selectItems value="#{escolaBean.estados}" var="list" itemLabel="#{list.sigla}" itemValue="#{list.id}" />
 						</p:selectOneMenu></td>
 					<td><h:outputText value="Cep:" styleClass="textoPagina" /></td>
-					<td><p:inputMask mask="99999-999" size="8" style="#{style.styleCampo}" /></td>
+					<td><p:inputMask mask="99999-999" size="8" style="#{style.styleCampo}" value="#{escolaBean.model.cep}" /></td>
 				</tr>
 				<tr>
 					<td><h:outputText value="Email:" styleClass="textoPagina" /></td>
-					<td><p:inputText size="20" style="#{style.styleCampo}" /></td>
+					<td><p:inputText size="20" style="#{style.styleCampo}" value="#{escolaBean.model.email}" /></td>
 					<td><h:outputText value="Filial:" styleClass="textoPagina" /></td>
-					<td><p:selectOneRadio style="#{style.styleCampo}">
-							<f:selectItem itemLabel="Sim" itemValue="true" />
-							<f:selectItem itemLabel="Não" itemValue="false" />
+					<td><p:selectOneRadio style="#{style.styleCampo}" value="#{escolaBean.model.tipo}">
+							<f:selectItem itemLabel="Sim" itemValue="F" />
+							<f:selectItem itemLabel="Não" itemValue="P" />
 						</p:selectOneRadio></td>
 				</tr>
 
@@ -46,9 +44,35 @@
 
 		</div>
 		<br />
-		<br />
 		<div align="center">
-			<p:commandButton value="Enviar" />
+			<p:commandButton value="Salvar" process="@form" update="@form" action="#{escolaBean.save()}" />
+			<p:commandButton value="Voltar" action="cadastramento.xhtml?faces-redirect=true" ajax="false" />
 		</div>
+		<br />
+
+		<p:dataTable paginatorPosition="bottom" var="lista" emptyMessage="#{escolaBean.emptyMessage}"
+			update="lista" rowsPerPageTemplate="#{escolaBean.paginacao}" styleClass="coluna100" value="#{escolaBean.lazyDataModel}" paginator="true"
+			lazy="true" rows="5" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'linhaImpar' : 'linhaPar'}" rowIndexVar="rowIx">
+
+			<p:column headerText="Nome" sortBy="#{lista.nome}" filterBy="#{lista.nome}" filterStyle="width:200px">
+				<h:outputText value="#{lista.nome}" />
+			</p:column>
+			<p:column headerText="Estado" sortBy="#{lista.estado.nome}" filterBy="#{lista.estado.nome}" filterStyle="width:200px">
+				<h:outputText value="#{lista.estado.nome}" />
+			</p:column>
+			<p:column headerText="Filial?" sortBy="#{lista.tipo}" filterStyle="width:200px">
+				<h:outputText value="#{lista.tipoFormat}" />
+			</p:column>
+			<p:column headerText="Ações" style="width:15%;text-align:center;">
+				<p:commandButton title="Editar" value="Editar" update="@form" process="@this" action="#{escolaBean.load()}">
+					<f:setPropertyActionListener target="#{escolaBean.model}" value="#{lista}" />
+				</p:commandButton>
+				<p:commandButton title="Excluir" value="Excluir" update="@form" process="@this" action="#{escolaBean.delete()}">
+					<f:setPropertyActionListener target="#{escolaBean.model}" value="#{lista}" />
+					<p:confirm header="Confirmação" message="Confirma a exclusão da escola" icon="ui-icon-alert" />
+
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
 	</ui:define>
 </ui:composition>

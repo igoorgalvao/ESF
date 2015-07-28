@@ -38,6 +38,7 @@ public class Usuario extends Entidade<Long> {
 	}
 
 	public Usuario() {
+		escola = new Escola();
 	}
 
 	public Long getId() {
