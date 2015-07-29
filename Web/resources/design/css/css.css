@@ -1,5 +1,12 @@
 @CHARSET "UTF-8";
 
+.ui-widget-header .ui-inputfield, .ui-widget-content .ui-inputfield {
+	background-color:#4D94D3 !important;
+	color:white !important;
+	border-radius: 10px !important;
+}
+
+
 .ui-datatable .ui-datatable-data .colunarSemBorder td {
 	border-style: none;
 	border-width: 0px;

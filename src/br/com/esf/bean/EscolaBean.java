@@ -92,7 +92,9 @@ public class EscolaBean extends PaginableBean<Escola> {
 	}
 
 	public void limpar() {
-		setModel(new Escola());
+		Escola esc = new Escola();
+		esc.setEstado(new Estado());
+		setModel(esc);
 		idEstado = null;
 	}
 
@@ -179,7 +181,9 @@ public class EscolaBean extends PaginableBean<Escola> {
 
 	@Override
 	public Escola createModel() {
-		return new Escola();
+		Escola esc = new Escola();
+		esc.setEstado(new Estado());
+		return esc;
 	}
 
 	@Override

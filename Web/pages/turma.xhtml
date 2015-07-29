@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+
+	<ui:define name="body">
+
+		<script type="text/javascript">
+	jQuery(function ($) {
+	    $("#dtInicio_input").mask("99/99/9999", {placeholder: "_"});
+	    $("#dtFim_input").mask("99/99/9999", {placeholder: "_"});
+	});
+</script>
+
+
+
+		<h:outputText value="Turma:" styleClass="tituloPagina" />
+		<br />
+		<div align="center">
+			<table>
+				<tr>
+					<td><h:outputText value="Escola:" styleClass="textoPagina" /></td>
+					<td colspan="5"><p:selectOneMenu style="width:840px;" filterMatchMode="contains" filter="true" value="#{turmaBean.idEscola}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{turmaBean.escolas}" var="list" itemLabel="#{list.nome}" itemValue="#{list.id}" />
+						</p:selectOneMenu></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Nome:" styleClass="textoPagina" /></td>
+					<td><p:inputText size="40" maxlength="40" sstyle="#{style.styleCampo}" value="#{turmaBean.model.turma}" /></td>
+					<td><h:outputText value="Ano:" styleClass="textoPagina" /></td>
+					<td><p:inputMask mask="99" size="4" maxlength="2" style="#{style.styleCampo}" value="#{turmaBean.model.ano}" /></td>
+					<td><h:outputText value="Início:" styleClass="textoPagina" /></td>
+					<td><p:calendar id="dtInicio" locale="pt" pattern="dd/MM/yyyy" navigator="true" maxlength="10" size="15" readOnlyInputText="true"
+							mode="popup" showOn="button" value="#{turmaBean.model.inicio}" /></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Professor:" styleClass="textoPagina" /></td>
+					<td><p:selectOneMenu style="width:400px;" filterMatchMode="contains" filter="true" value="#{turmaBean.idProfessor}">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{turmaBean.professores}" var="list" itemLabel="#{list.professor}" itemValue="#{list.id}" />
+						</p:selectOneMenu></td>
+					<td><h:outputText value="Ensino:" styleClass="textoPagina" /></td>
+					<td><p:inputText size="10" maxlength="15" style="#{style.styleCampo}" value="#{turmaBean.model.ensino}" /></td>
+					<td><h:outputText value="Término:" styleClass="textoPagina" /></td>
+					<td><p:calendar style="#{style.styleCampo}" id="dtFim" locale="pt" pattern="dd/MM/yyyy" navigator="true" maxlength="10" size="15"
+							readOnlyInputText="true" mode="popup" showOn="button" value="#{turmaBean.model.termino}" /></td>
+				</tr>
+			</table>
+		</div>
+		<br />
+		<div align="center">
+			<p:commandButton value="Salvar" process="@form" update="@form" action="#{turmaBean.save()}" />
+			<p:commandButton value="Limpar" process="@form" update="@form" action="#{turmaBean.limpar()}" />
+			<p:commandButton value="Voltar" action="cadastramento.xhtml?faces-redirect=true" ajax="false" />
+		</div>
+		<br />
+
+		<p:dataTable paginatorPosition="bottom" var="lista" emptyMessage="#{turmaBean.emptyMessage}" update="lista"
+			rowsPerPageTemplate="#{turmaBean.paginacao}" styleClass="coluna100" value="#{turmaBean.lazyDataModel}" paginator="true" lazy="true"
+			rows="5" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'linhaImpar' : 'linhaPar'}" rowIndexVar="rowIx">
+
+			<p:column headerText="Escola" sortBy="#{lista.escola.nome}" filterBy="#{lista.escola.nome}" filterStyle="width:200px">
+				<h:outputText value="#{lista.escola.nome}" />
+			</p:column>
+			<p:column headerText="Nome" sortBy="#{lista.turma}" filterBy="#{lista.turma}" filterStyle="width:200px">
+				<h:outputText value="#{lista.turma}" />
+			</p:column>
+			<p:column headerText="Ano" sortBy="#{lista.ano}" filterBy="#{lista.ano}" filterStyle="width:200px">
+				<h:outputText value="#{lista.ano}" />
+			</p:column>
+			<p:column headerText="Professor" sortBy="#{lista.professor.professor}" filterBy="#{lista.professor.professor}" filterStyle="width:200px">
+				<h:outputText value="#{lista.professor.professor}" />
+			</p:column>
+			<p:column headerText="Ações" style="width:15%;text-align:center;">
+				<p:commandButton title="Editar" value="Editar" update="@form" process="@this" action="#{turmaBean.load()}">
+					<f:setPropertyActionListener target="#{turmaBean.model}" value="#{lista}" />
+				</p:commandButton>
+				<p:commandButton title="Excluir" value="Excluir" update="@form" process="@this" action="#{turmaBean.delete()}">
+					<f:setPropertyActionListener target="#{turmaBean.model}" value="#{lista}" />
+					<p:confirm header="Confirmação" message="Confirma a exclusão da turma" icon="ui-icon-alert" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>

@@ -39,6 +39,7 @@ public class Usuario extends Entidade<Long> {
 
 	public Usuario() {
 		escola = new Escola();
+		escola.setEstado(new Estado());
 	}
 
 	public Long getId() {

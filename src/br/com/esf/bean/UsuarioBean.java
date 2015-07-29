@@ -21,6 +21,7 @@ import br.com.arquitetura.util.ConstantesARQ;
 import br.com.arquitetura.util.FacesMessagesUtil;
 import br.com.esf.entidade.Acesso;
 import br.com.esf.entidade.Escola;
+import br.com.esf.entidade.Estado;
 import br.com.esf.entidade.Usuario;
 import br.com.esf.service.AcessoService;
 import br.com.esf.util.Constantes;
@@ -202,8 +203,10 @@ public class UsuarioBean extends PaginableBean<Acesso> {
 
 	@Override
 	public Acesso createModel() {
+		Escola esc = new Escola();
+		esc.setEstado(new Estado());
 		Usuario usu = new Usuario();
-		usu.setEscola(new Escola());
+		usu.setEscola(esc);
 		Acesso acesso = new Acesso();
 		acesso.setUsuario(usu);
 		return acesso;

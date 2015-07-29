@@ -11,6 +11,7 @@ import javax.persistence.Column;
 import br.com.arquitetura.excecao.ExcecaoUtil;
 import br.com.arquitetura.service.UniversalManager;
 import br.com.esf.entidade.Acesso;
+import br.com.esf.entidade.Professor;
 import br.com.esf.entidade.Responsavel;
 import br.com.esf.entidade.Usuario;
 import br.com.esf.util.CriptoUtil;
@@ -31,15 +32,25 @@ public class BancoBean implements Serializable {
 		try {
 			if (jaPopulado == null || !jaPopulado) {
 
+				// TODO remover PROFESSOR
+				Professor prof = new Professor();
+				prof.setProfessor("teste");
+
+				List<Professor> professores = universalManager.listBy(prof);
+
+				if (professores == null || professores.isEmpty()) {
+					universalManager.save(prof);
+				}
+
 				Acesso acesso = new Acesso();
 				acesso.setLogin("admin");
-				
+
 				List<Acesso> listaAcesso = universalManager.listBy(acesso);
 
 				if (listaAcesso == null || listaAcesso.isEmpty()) {
-					
+
 					acesso.setSenha(CriptoUtil.getCriptografia("admin"));
-					
+
 					Usuario user = new Usuario();
 					user.setEmail("admin@admin.com.br");
 					user.setNome("admin");
@@ -47,7 +58,7 @@ public class BancoBean implements Serializable {
 
 					acesso.setUsuario(user);
 					universalManager.save(acesso);
-				
+
 				}
 
 				acesso = new Acesso();
@@ -55,7 +66,7 @@ public class BancoBean implements Serializable {
 				listaAcesso = universalManager.listBy(acesso);
 
 				if (listaAcesso == null || listaAcesso.isEmpty()) {
-					
+
 					acesso.setSenha(CriptoUtil.getCriptografia("igor"));
 
 					Responsavel resp = new Responsavel();

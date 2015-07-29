@@ -66,12 +66,10 @@ public class Escola extends Entidade<Long> {
 	private String tipoFormat;
 
 	public Escola() {
-		estado = new Estado();
 	}
 
 	public Escola(Long id) {
 		this.id = id;
-		estado = new Estado();
 	}
 
 	public Long getId() {
